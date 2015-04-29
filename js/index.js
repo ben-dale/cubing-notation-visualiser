@@ -43,7 +43,14 @@
     "R(a)-Perm": "R U R' F' R U2 R' U2 R' F R U R U2 R' U'",
     "R(b)-Perm": "R' U2 R U2 R' F R U R' U' R' F' R2 U'",
     "F-Perm": "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R",
-    "Y-Perm": "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+    "Y-Perm": "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+    "H-Perm": "M2' U M2' U2 M2' U M2'",
+    "U(a)-Perm": "R2 U' R' U' R U R U R U' R",
+    "U(b)-Perm": "R' U R' U' R' U' R' U R U R2",
+    "Z-Perm": "M2' U M2' U M' U2 M2' U2 M' U2",
+    "A(a)-Perm": "R' F R' B2 R F' R' B2 R2",
+    "A(b)-Perm": "R B' R F2 R' B R F2 R2",
+    "F-Perm": "R' U R U' R2 F' U' F U R F R' F' R2 U'"
   };
 
   error = function(message) {
@@ -175,6 +182,24 @@
         case "U2i":
           show(ui);
           show(ui);
+          break;
+        case "M2":
+          show(u);
+          show(u);
+          break;
+        case "M2'":
+        case "M2i":
+          show(mi);
+          show(mi);
+          break;
+        case "E2":
+          show(e);
+          show(e);
+          break;
+        case "E2'":
+        case "E2i":
+          show(ei);
+          show(ei);
           break;
         default:
           invalidMoves.push(move);

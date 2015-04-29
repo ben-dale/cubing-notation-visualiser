@@ -24,7 +24,14 @@ pllalgs = {
 	"R(a)-Perm" : "R U R' F' R U2 R' U2 R' F R U R U2 R' U'",
 	"R(b)-Perm" :  "R' U2 R U2 R' F R U R' U' R' F' R2 U'",
 	"F-Perm" : "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R",
-	"Y-Perm" : "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+	"Y-Perm" : "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+	"H-Perm" : "M2' U M2' U2 M2' U M2'",
+	"U(a)-Perm" : "R2 U' R' U' R U R U R U' R",
+	"U(b)-Perm" : "R' U R' U' R' U' R' U R U R2",
+	"Z-Perm" : "M2' U M2' U M' U2 M2' U2 M' U2",
+	"A(a)-Perm" : "R' F R' B2 R F' R' B2 R2",
+	"A(b)-Perm" : "R B' R F2 R' B R F2 R2"
+	"F-Perm" : "R' U R U' R2 F' U' F U R F R' F' R2 U'"
 }
 
 error = (message) ->
@@ -42,7 +49,7 @@ generateImages = () ->
 	invalidMoves = []
 
 	for move in notation
-	
+		
 		switch(move)
 			when "B" then show b
 			when "B'","Bi" then show bi
@@ -72,6 +79,10 @@ generateImages = () ->
 			when "R2'", "R2i" then show ri; show ri
 			when "U2" then show u; show u
 			when "U2'", "U2i" then show ui; show ui
+			when "M2" then show u; show u
+			when "M2'", "M2i" then show mi; show mi
+			when "E2" then show e; show e
+			when "E2'", "E2i" then show ei; show ei
 			else invalidMoves.push move
 			
 	if invalidMoves.length > 0 
