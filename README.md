@@ -1,8 +1,10 @@
-## cubing-algorithms-notation-visuliser
+## Cubing Notation Visuliser
+
+Struggling to understand cubing notation? Visualise it.
 
 A work in progress.
 
-[Click here to go to the live application](http://ben-dale.github.io/cubing-notation-visuliser/)
+[Click here to go to the live application](http://ben-dale.github.io/cubing-notation-visualiser/)
 
 ### TODO
 - Add support for different sized cubes (4x4, 5x5, 6x6 etc)
