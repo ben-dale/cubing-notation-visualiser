@@ -184,8 +184,8 @@
           show(ui);
           break;
         case "M2":
-          show(u);
-          show(u);
+          show(m);
+          show(m);
           break;
         case "M2'":
         case "M2i":

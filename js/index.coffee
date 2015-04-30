@@ -79,7 +79,7 @@ generateImages = () ->
 			when "R2'", "R2i" then show ri; show ri
 			when "U2" then show u; show u
 			when "U2'", "U2i" then show ui; show ui
-			when "M2" then show u; show u
+			when "M2" then show m; show m
 			when "M2'", "M2i" then show mi; show mi
 			when "E2" then show e; show e
 			when "E2'", "E2i" then show ei; show ei
