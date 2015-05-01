@@ -16,6 +16,8 @@ ei = "./images/ei.png"
 e = "./images/e.png"
 m = "./images/m.png"
 mi = "./images/mi.png"
+s = "./images/s.png"
+si = "./images/si.png"
 
 pllalgs = {
 	"T-Perm" : "R U R' U' R' F R2 U' R' U' R U R' F'",
@@ -67,6 +69,8 @@ generateImages = () ->
 			when "E'", "Ei" then show ei
 			when "M" then show m
 			when "M'", "Mi" then show mi
+			when "S" then show s
+			when "S'", "Si" then show si
 			when "B2" then show b; show b
 			when "B2'", "B2i" then show bi; show bi
 			when "D2" then show d; show d
@@ -82,7 +86,9 @@ generateImages = () ->
 			when "M2" then show m; show m
 			when "M2'", "M2i" then show mi; show mi
 			when "E2" then show e; show e
-			when "E2'", "E2i" then show ei; show ei
+			when "E2'", "S2i" then show si; show si
+			when "S2" then show s; show s
+			when "S2'", "S2i" then show si; show si
 			else invalidMoves.push move
 			
 	if invalidMoves.length > 0 
