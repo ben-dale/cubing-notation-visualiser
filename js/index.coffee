@@ -26,6 +26,8 @@ xImage = "./images/x.png"
 xiImage = "./images/xi.png"
 yImage = "./images/y.png"
 yiImage = "./images/yi.png"
+zImage = "./images/z.png"
+ziImage = "./images/zi.png"
 
 ##### ALGORITHMS #####
 pllalgs = {
@@ -69,6 +71,8 @@ getImageForMove = (move) ->
 		when "X'", "Xi", "x'", "xi" then xiImage
 		when "Y", "y" then  yImage
 		when "Y'", "Yi", "y'", "yi" then yiImage
+		when "Z", "z" then  zImage
+		when "Z'", "Zi", "z'", "zi" then ziImage
 		else ""
 
 showError = (message) ->
