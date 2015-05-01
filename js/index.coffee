@@ -43,8 +43,12 @@ pllalgs = {
 	"U(b)-Perm" : "R' U R' U' R' U' R' U R U R2",
 	"Z-Perm" : "M2' U M2' U M' U2 M2' U2 M' U2",
 	"A(a)-Perm" : "R' F R' B2 R F' R' B2 R2",
-	"A(b)-Perm" : "R B' R F2 R' B R F2 R2"
-	"F-Perm" : "R' U R U' R2 F' U' F U R F R' F' R2 U'"
+	"A(b)-Perm" : "R B' R F2 R' B R F2 R2",
+	"F-Perm" : "R' U R U' R2 F' U' F U R F R' F' R2 U'",
+	"E-Perm" : "(y x') R U' R' D R U R' D' R U R' D R U' R' D' (x)",
+	"G(a)-Perm" : "(y) R2 U R' U R' U' R U' R2 D U' R' U R D'",
+	"N(a)-Perm" : "(L U' R U2 L' U R')2 U'"
+
 }
 
 getImageForMove = (move) ->
