@@ -20,6 +20,13 @@ mi = "./images/mi.png"
 s = "./images/s.png"
 si = "./images/si.png"
 
+# These have to be named differently.
+# The compiled JavaScript uses x,y,z for other things...
+xImage = "./images/x.png"
+xiImage = "./images/xi.png"
+yImage = "./images/y.png"
+yiImage = "./images/yi.png"
+
 ##### ALGORITHMS #####
 pllalgs = {
 	"T-Perm" : "R U R' U' R' F R2 U' R' U' R U R' F'",
@@ -58,6 +65,10 @@ getImageForMove = (move) ->
 		when "M'", "Mi" then mi
 		when "S" then  s
 		when "S'", "Si" then si
+		when "X", "x" then  xImage
+		when "X'", "Xi", "x'", "xi" then xiImage
+		when "Y", "y" then  yImage
+		when "Y'", "Yi", "y'", "yi" then yiImage
 		else ""
 
 showError = (message) ->
@@ -71,7 +82,7 @@ showImage = (n) ->
 
 handleErrors = (invalidMoves) ->
 	if invalidMoves.length > 0 
-		message = "Unable to parse the following moves: <ul>"
+		message = "Unable to provide images for the following moves: <ul>"
 		for move in invalidMoves 
 			message += "<li>#{move}</li>"
 		message += "</ul>"
@@ -106,6 +117,7 @@ parseAlgorithm = (algorithm) ->
 				# Number of times to repeat the subalgorithm
 				noOfRepeats = subAlg[subAlg.length - 1].split("\)")
 				noOfRepeats = noOfRepeats[noOfRepeats.length-1]
+				if !noOfRepeats then noOfRepeats = 1
 
 				# Remove brackets and repeating number from sub algorithm
 				subAlg[0] = subAlg[0].replace("\(", "")
@@ -150,7 +162,7 @@ generateImages = () ->
 						move = move.replace(noOfRepeats, "")
 
 					image = getImageForMove(move)
-					
+
 					if image.length == 0 
 						invalidMoves.push(move)
 					else 
