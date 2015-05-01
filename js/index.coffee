@@ -1,5 +1,6 @@
 $ = jQuery
 
+##### IMAGES #####
 b = "./images/b.png"
 bi = "./images/bi.png"
 d = "./images/d.png"
@@ -19,6 +20,7 @@ mi = "./images/mi.png"
 s = "./images/s.png"
 si = "./images/si.png"
 
+##### ALGORITHMS #####
 pllalgs = {
 	"T-Perm" : "R U R' U' R' F R2 U' R' U' R U R' F'",
 	"J(a)-Perm" : "R' U L' U2 R U' R' U2 R L U'",
@@ -64,7 +66,7 @@ showError = (message) ->
 hideError = () ->
 	$("#warning-message").hide();
 
-show = (n) ->
+showImage = (n) ->
 	$("#images").append("<img src=#{n} />")
 
 handleErrors = (invalidMoves) ->
@@ -75,26 +77,35 @@ handleErrors = (invalidMoves) ->
 		message += "</ul>"
 		showError message
 
+removeInversion = (move) ->
+	move.replace("i", "").replace("'", "")
+
 generateImages = () ->
 	$("#images").empty()
-	notation = $("#notation").val().split " "
 	invalidMoves = []
+	notation = $("#notation").val().trim()
+	algorithm = notation.split " "
 
-	for move in notation
-		repeatingMove = false
-		
-		if move.indexOf("2") > -1 then repeatingMove = true; move = move.replace("2", "")
+	# Loop over moves in notation
+	for move in algorithm
+		if(move.length > 0)
+			noOfRepeats = 1
+			
+			extractedNumber = removeInversion(move).split(move[0])[1]
+			if extractedNumber?.length != 0 and isFinite(extractedNumber)
+				noOfRepeats = extractedNumber
+				move = move.replace(noOfRepeats, "")
+
+			image = getImageForMove(move)
+			if image.length == 0 
+				invalidMoves.push(move)
+			else 
+				for x in [0...noOfRepeats] by 1
+					showImage(image)
 	
-		image = getImageForMove(move)
-		if image.length == 0 
-			invalidMoves.push(move)
-		else if repeatingMove
-			show image
-			show image
-		else
-			show image	
-		
 	handleErrors(invalidMoves)
+
+##### ON SCREEN ELEMENT LISTENING #####
 
 $("#generateImages").on "click", (event) ->
 	hideError()

@@ -10,6 +10,6 @@ A work in progress.
 - Add support for different sized cubes (4x4, 5x5, 6x6 etc)
 - Finish adding PLL algs
 - Add OLL algs
-- Upgrade images
+- ~~Upgrade images~~
 - Add support for duplicating blocks of algs e.g. (Li L)2 Ui U
 - Add support for l, r, x, y, z moves
