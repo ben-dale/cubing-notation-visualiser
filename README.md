@@ -1,4 +1,4 @@
-## Cubing Notation Visuliser
+## Cubing Notation Visualiser
 
 Struggling to understand cubing notation? Visualise it.
 
