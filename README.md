@@ -11,5 +11,5 @@ A work in progress.
 - Finish adding PLL algs
 - Add OLL algs
 - ~~Upgrade images~~
-- Add support for duplicating blocks of algs e.g. (Li L)2 Ui U
+- ~~Add support for duplicating blocks of algs e.g. (Li L)2 Ui U~~
 - Add support for l, r, x, y, z moves
