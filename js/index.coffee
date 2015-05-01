@@ -36,7 +36,29 @@ pllalgs = {
 	"F-Perm" : "R' U R U' R2 F' U' F U R F R' F' R2 U'"
 }
 
-error = (message) ->
+getImageForMove = (move) ->
+	switch(move)
+		when "B" then b
+		when "B'","Bi" then bi
+		when "D" then d
+		when "D'", "Di" then di
+		when "F" then f
+		when "F'","Fi" then fi
+		when "L" then l
+		when "L'","Li" then li
+		when "R" then r
+		when "R'","Ri" then ri
+		when "U" then u
+		when "U'","Ui" then ui
+		when "E" then e
+		when "E'", "Ei" then ei
+		when "M" then  m
+		when "M'", "Mi" then mi
+		when "S" then  s
+		when "S'", "Si" then si
+		else ""
+
+showError = (message) ->
 	$("#warning-message").html(message).show();
 
 hideError = () ->
@@ -45,58 +67,34 @@ hideError = () ->
 show = (n) ->
 	$("#images").append("<img src=#{n} />")
 
+handleErrors = (invalidMoves) ->
+	if invalidMoves.length > 0 
+		message = "Unable to parse the following moves: <ul>"
+		for move in invalidMoves 
+			message += "<li>#{move}</li>"
+		message += "</ul>"
+		showError message
+
 generateImages = () ->
 	$("#images").empty()
 	notation = $("#notation").val().split " "
 	invalidMoves = []
 
 	for move in notation
+		repeatingMove = false
 		
-		switch(move)
-			when "B" then show b
-			when "B'","Bi" then show bi
-			when "D" then show d
-			when "D'", "Di" then show di
-			when "F" then show f
-			when "F'","Fi" then show fi
-			when "L" then show l
-			when "L'","Li" then show li
-			when "R" then show r
-			when "R'","Ri" then show ri
-			when "U" then show u
-			when "U'","Ui" then show ui
-			when "E" then show e
-			when "E'", "Ei" then show ei
-			when "M" then show m
-			when "M'", "Mi" then show mi
-			when "S" then show s
-			when "S'", "Si" then show si
-			when "B2" then show b; show b
-			when "B2'", "B2i" then show bi; show bi
-			when "D2" then show d; show d
-			when "D2'", "D2i" then show di; show di
-			when "F2" then show f; show f
-			when "F2'", "F2i" then show fi; show fi
-			when "L2" then show l; show l
-			when "L2'", "L2i" then show li; show li
-			when "R2" then show r; show r
-			when "R2'", "R2i" then show ri; show ri
-			when "U2" then show u; show u
-			when "U2'", "U2i" then show ui; show ui
-			when "M2" then show m; show m
-			when "M2'", "M2i" then show mi; show mi
-			when "E2" then show e; show e
-			when "E2'", "S2i" then show si; show si
-			when "S2" then show s; show s
-			when "S2'", "S2i" then show si; show si
-			else invalidMoves.push move
-			
-	if invalidMoves.length > 0 
-		message = "Unable to parse the following moves: <ul>"
-		for move in invalidMoves 
-			message += "<li>#{move}</li>"
-		message += "</ul>"
-		error(message)
+		if move.indexOf("2") > -1 then repeatingMove = true; move = move.replace("2", "")
+	
+		image = getImageForMove(move)
+		if image.length == 0 
+			invalidMoves.push(move)
+		else if repeatingMove
+			show image
+			show image
+		else
+			show image	
+		
+	handleErrors(invalidMoves)
 
 $("#generateImages").on "click", (event) ->
 	hideError()
