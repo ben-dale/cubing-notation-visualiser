@@ -99,54 +99,6 @@ handleErrors = (invalidMoves) ->
 removeInversion = (move) ->
 	move.replace("i", "").replace("'", "")
 
-getIndexOfLastSubAlgMove = (algorithm) ->
-	index = -1
-	for move in algorithm
-		index++
-		if move.indexOf("\)") > -1 then break
-	index
-
-parseAlgorithm = (algorithm) ->
-	parsedAlgorithm = []
-	algorithmArr = algorithm.split " "
-	noOfSkips = 0
-
-	for move, index in algorithmArr
-		# Checks if this move has to be skipped or not
-		# A move is skipped if it's encapsulated in brackets
-		if noOfSkips > 0
-			noOfSkips--
-		else 
-			if move.indexOf("\(") > -1
-				# Extract the sub algorithm
-				subAlg = algorithmArr.slice(index, algorithmArr.length)
-				subAlg = subAlg.slice(0, getIndexOfLastSubAlgMove(subAlg) + 1)
-				
-				# Number of times to repeat the subalgorithm
-				noOfRepeats = subAlg[subAlg.length - 1].split("\)")
-				noOfRepeats = noOfRepeats[noOfRepeats.length-1]
-				if !noOfRepeats then noOfRepeats = 1
-
-				# Remove brackets and repeating number from sub algorithm
-				subAlg[0] = subAlg[0].replace("\(", "")
-				subAlg[subAlg.length-1] = subAlg[subAlg.length-1].split(")")[0]
-
-				# Store subalgorithm in object
-				subAlgorithm =
-					algorithm : subAlg
-					repeat : noOfRepeats
-
-				parsedAlgorithm.push(subAlgorithm)
-				noOfSkips += subAlg.length - 1
-			else
-				subAlgorithm = 
-					algorithm : [move]
-					repeat : 1
-
-				parsedAlgorithm.push(subAlgorithm)
-				
-	parsedAlgorithm
-
 generateImages = () ->
 	$("#images").empty()
 	invalidMoves = []
@@ -155,7 +107,7 @@ generateImages = () ->
 
 	# The parsed algorithm comes back something like this:
 	# (U R)3 U => [ { [U, R], 3 }, { [U], 1} ]
-	parsedAlgorithm = parseAlgorithm(notation)
+	parsedAlgorithm = CubingNotationParser.parse(notation)
 	for subAlg in parsedAlgorithm
 		for x in [0...subAlg.repeat] by 1
 			for move in subAlg.algorithm
